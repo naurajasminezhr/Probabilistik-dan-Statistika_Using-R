@@ -1,0 +1,184 @@
+---
+title: "Statistika Deskriptif_Data Starbuck"
+output: html_document
+date: "2023-0x-xx"
+---
+
+---
+title: "Statistik Deskriptif"
+output: html_document
+date: '2023-04-11'
+---
+
+```{r}
+#Data diambil dari link berikut
+dat <- read.csv('survey_starbucks_customer_survey.csv')
+#Melihat data
+dat
+```
+## Statsitika Deskriptif
+```{r}
+# melihat rata-rata dari kolom priceRate
+mean(dat$priceRate)
+mean(dat$productRate)
+```
+```{r}
+#melihat median
+median(dat$productRate)
+```
+```{r}
+# melihat mmodus
+modus <- function(x) {
+  uniqx <- unique(x)
+  uniqx[which.max(tabulate(match(x, uniqx)))]
+}
+modus(dat$productRate)
+```
+
+
+```{r}
+# meelihat min & max  kolom price rate
+a <- min(dat$productRate)
+a
+b <- max(dat$productRate)
+b
+```
+
+```{r}
+# melihat range
+range2 <- function(x) {
+  range <- b-a
+  return(range)
+}
+range2(dat$productRate)
+```
+```{r}
+# melihat varians
+var(dat$productRate)
+```
+```{r}
+# standar deviasi
+sd(dat$productRate)
+```
+
+```{r}
+# melihat kuartil
+summary(dat$priceRate)
+# alternatif code
+quantile(dat$priceRate, probs = c(0.25, 0.5, 0.75))
+```
+```{r}
+library(pastecs)
+stat.desc(dat$productRate)
+```
+```{r}
+
+library(pastecs)
+stat.desc(dat)
+
+```
+
+```{r}
+summary(dat)
+```
+## hapus row ID
+
+```{r}
+dat <- dat %>% select(-Id)
+```
+
+```{r}
+dat
+```
+
+
+
+#stats desk. untuk pengkategorian
+
+
+```{r}
+library(dplyr)
+kat1<-select(dat, 1,2,3,4)
+kat2<-select(dat,5,6,7)
+kat1
+kat2
+```
+```{r hist-wifiRate, eval=FALSE}
+
+hist(kat2$wifiRate)
+```
+
+
+```{r}
+# melihat rata-rata dari kolom priceRate
+mean(kat1$productRate)
+mean(kat2$wifiRate)
+```
+```{r}
+#melihat median
+median(kat1$productRate)
+```
+```{r}
+# melihat modus
+modus <- function(x) {
+  uniqx <- unique(x)
+  uniqx[which.max(tabulate(match(x, uniqx)))]
+}
+modus(kat1$productRate)
+modus(kat2$wifiRate)
+```
+# meelihat min & max  kolom product rate
+
+```{r}
+
+a <- min(kat1$productRate)
+a
+b <- max(kat1$productRate)
+b
+```
+# melihat range
+
+```{r}
+
+range2 <- function(x) {
+  range <- b-a
+  return(range)
+}
+range2(kat1$productRate)
+```
+# melihat varians
+```{r}
+
+var(kat1$productRate)
+```
+# standar deviasi
+
+```{r}
+sd(kat1$productRate)
+sd(kat2$wifiRate)
+```
+# melihat kuartil
+
+```{r}
+summary(kat1$productRate)
+# alternatif code
+quantile(kat1$priceRate, probs = c(0.25, 0.5, 0.75))
+
+summary(kat1)
+```
+```{r}
+library(pastecs)
+stat.desc(kat1$productRate)
+```
+```{r}
+
+library(pastecs)
+stat.desc(dat)
+
+```
+
+```{r}
+summary(dat)
+```
+
+
